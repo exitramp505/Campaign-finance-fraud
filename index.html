@@ -7,47 +7,323 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .heading-font { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; }
-        .tracker-hero { position: relative; overflow: hidden; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+        :root {
+            --red: #b91c1c;
+            --dark-red: #7f1d1d;
+            --slate: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .heading-font {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+        }
+
+        .page-shell {
+            width: min(100% - 2rem, 1280px);
+            margin-inline: auto;
+        }
+
+        .tracker-hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            min-height: 320px;
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            object-position: 68% center;
+        }
+
         .tracker-overlay {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, rgba(220,38,38,0.25), rgba(185,28,28,0.25));
-            display: flex; align-items: center; padding: 1.5rem;
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.32) 48%, rgba(127,29,29,0.12) 100%),
+                linear-gradient(180deg, rgba(127,29,29,0.22), rgba(0,0,0,0.36));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.25rem;
         }
-        .tracker-text { 
-            font-size: 2rem; 
-            line-height: 1.1; 
-            font-weight: 700; 
-            color: white; 
-            text-shadow: 0 4px 20px rgba(0,0,0,0.85); 
-            letter-spacing: -1px; 
+
+        .tracker-copy {
+            max-width: 18rem;
         }
-        @media (min-width: 640px) {
-            .tracker-text { font-size: 2.6rem; }
+
+        .tracker-text {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            line-height: .9;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 4px 22px rgba(0,0,0,.85);
+            letter-spacing: -0.06em;
+        }
+
+        .desktop-nav-actions {
+            display: none;
+        }
+
+        .mobile-action-bar {
+            display: none;
+        }
+
+        @media (max-width: 899px) {
+            .top-banner {
+                padding: .65rem 1rem;
+                font-size: .72rem;
+                line-height: 1.25;
+            }
+
+            .nav-inner {
+                height: auto;
+                min-height: 58px;
+                padding-block: .7rem;
+            }
+
+            .brand-mark {
+                width: 2rem;
+                height: 2rem;
+                border-radius: .8rem;
+                flex: 0 0 auto;
+            }
+
+            .brand-title {
+                font-size: .95rem;
+                line-height: 1.1;
+                letter-spacing: -0.03em;
+            }
+
+            .mobile-action-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: .65rem;
+                padding: .75rem 1rem;
+                background: white;
+                border-bottom: 1px solid rgb(226 232 240);
+            }
+
+            .mobile-action-bar a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: .35rem;
+                border-radius: 999px;
+                padding: .72rem .7rem;
+                font-size: .73rem;
+                font-weight: 700;
+                line-height: 1;
+            }
+
+            .page-shell {
+                width: min(100% - 1rem, 1280px);
+            }
+
+            .hero-section {
+                padding-top: .75rem;
+                padding-bottom: 1rem;
+            }
+
+            .tracker-hero {
+                border-width: 2px;
+                border-radius: 1.35rem;
+                box-shadow: 0 18px 45px rgba(15,23,42,.18);
+            }
+
+            .hero-photo-wrap,
+            .hero-photo {
+                min-height: 285px;
+            }
+
+            .tracker-overlay {
+                padding: 1rem;
+                align-items: flex-end;
+            }
+
+            .tracker-copy {
+                max-width: 15rem;
+            }
+
+            .status-pill {
+                font-size: .82rem;
+                padding: .45rem .9rem;
+                letter-spacing: .02em;
+            }
+
+            .tracker-text {
+                font-size: clamp(1.95rem, 10vw, 2.65rem);
+                letter-spacing: -0.07em;
+                max-width: 13.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: .95rem;
+                margin-top: .35rem;
+            }
+
+            .hero-tagline {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 1.2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+                line-height: .96;
+                letter-spacing: -0.06em;
+            }
+
+            .hero-content p {
+                margin-top: .9rem;
+                font-size: .98rem;
+                line-height: 1.55;
+            }
+
+            .total-block {
+                padding-top: 1.1rem;
+            }
+
+            .total-number {
+                font-size: 3rem;
+                line-height: 1;
+            }
+
+            .total-caption {
+                font-size: .95rem;
+                line-height: 1.25;
+            }
+
+            .content-stack {
+                padding-bottom: 1.3rem;
+            }
+
+            .content-card {
+                border-radius: 1.35rem;
+                padding: 1.15rem;
+            }
+
+            .content-card h2 {
+                align-items: flex-start;
+                font-size: 1.28rem;
+                line-height: 1.15;
+                margin-bottom: 1rem;
+            }
+
+            .legal-grid {
+                gap: 1rem;
+                font-size: .96rem;
+                line-height: 1.5;
+            }
+
+            .violations-grid {
+                gap: .85rem;
+            }
+
+            .violation-card {
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+
+            .violation-row {
+                gap: .75rem;
+                align-items: flex-start;
+            }
+
+            .violation-name {
+                font-size: 1rem;
+                line-height: 1.15;
+            }
+
+            .violation-address {
+                font-size: .78rem;
+                line-height: 1.3;
+                margin-top: .15rem;
+            }
+
+            .violation-amount {
+                font-size: 1.75rem;
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            .cta-card {
+                border-radius: 1.35rem;
+                padding: 1.25rem;
+            }
+
+            .cta-card h2 {
+                font-size: 1.55rem;
+            }
+
+            .cta-links {
+                gap: .85rem;
+            }
+
+            .cta-links a {
+                padding: 1rem;
+                border-radius: 1rem;
+                font-size: .95rem;
+                line-height: 1.25;
+            }
+        }
+
+
+        @media (min-width: 900px) {
+            .desktop-nav-actions {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-photo-wrap,
+            .hero-photo {
+                min-height: 520px;
+            }
+
+            .tracker-overlay {
+                align-items: center;
+                padding: 2rem;
+            }
+
+            .tracker-copy {
+                max-width: 21rem;
+            }
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
     <!-- Top Banner -->
-    <div class="bg-red-700 text-white py-3 text-sm font-medium text-center">
-        <i class="fa-solid fa-exclamation-triangle"></i> PUBLIC RECORDS: Prohibited donations from churches &amp; 501(c)(3) nonprofits appear in McPherson For Council filings
+    <div class="top-banner bg-red-700 text-white py-3 text-sm font-medium text-center">
+        <i class="fa-solid fa-exclamation-triangle"></i> PUBLIC RECORDS: Church &amp; nonprofit donations flagged
     </div>
 
     <!-- Navigation -->
     <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-screen-xl mx-auto px-6">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-x-3">
-                    <div class="w-9 h-9 bg-red-700 rounded-xl flex items-center justify-center">
-                        <i class="fa-solid fa-file-invoice-dollar text-white text-xl"></i>
+        <div class="page-shell">
+            <div class="nav-inner flex items-center justify-between h-16">
+                <div class="flex items-center gap-x-3 min-w-0">
+                    <div class="brand-mark w-9 h-9 bg-red-700 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-file-invoice-dollar text-white text-lg"></i>
                     </div>
-                    <span class="font-semibold text-xl tracking-tight">McPherson For Council • 2025</span>
+                    <span class="brand-title font-semibold text-xl tracking-tight truncate">McPherson For Council • 2025</span>
                 </div>
-                <div class="flex items-center gap-x-3">
-                    <a href="https://lookup.boe.ohio.gov/vtrapp/lucas/webcfs/default.aspx" target="_blank" 
+                <div class="desktop-nav-actions flex items-center gap-x-3">
+                    <a href="https://lookup.boe.ohio.gov/vtrapp/lucas/webcfs/default.aspx" target="_blank"
                        class="text-xs px-4 py-2 bg-white border border-red-200 text-red-700 hover:bg-red-50 rounded-full flex items-center gap-x-1">
                         <i class="fa-solid fa-external-link-alt"></i> View Official Database
                     </a>
@@ -60,98 +336,108 @@
         </div>
     </nav>
 
-    <!-- Hero - Fully mobile optimized -->
-    <div class="max-w-screen-xl mx-auto px-6 pt-8 pb-10">
+    <div class="mobile-action-bar sticky top-[58px] z-40">
+        <a href="https://lookup.boe.ohio.gov/vtrapp/lucas/webcfs/default.aspx" target="_blank" class="border border-red-200 text-red-700 bg-white">
+            <i class="fa-solid fa-external-link-alt"></i> Database
+        </a>
+        <a href="cfsreport.pdf" download="cfsreport.pdf" class="bg-red-600 text-white">
+            <i class="fa-solid fa-download"></i> PDF
+        </a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero-section page-shell pt-8 pb-10">
         <div class="tracker-hero bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-red-600">
             <div class="grid md:grid-cols-2">
                 <!-- Photo -->
-                <div class="relative">
-                    <img src="mcpherson.jpg" alt="Cerssandra McPherson" class="w-full h-full object-cover">
+                <div class="hero-photo-wrap">
+                    <img src="mcpherson.jpg" alt="Cerssandra McPherson" class="hero-photo">
                     <div class="tracker-overlay">
-                        <div class="max-w-xs">
-                            <div class="flex items-center gap-2 mb-4">
-                                <span class="px-3 py-1 bg-white text-red-700 text-xs font-bold rounded-full">TRACKED</span>
+                        <div class="tracker-copy">
+                            <div class="flex items-center gap-2 mb-3 md:mb-4">
+                                <span class="status-pill px-3 py-1 bg-white text-red-700 text-xs font-bold rounded-full">TRACKED</span>
                             </div>
                             <div class="tracker-text">CERSANDRA McPHERSON</div>
-                            <div class="text-white text-xl md:text-2xl mt-1">Toledo City Council</div>
-                            <div class="mt-6 text-white/95 text-base md:text-lg font-medium">Prohibited donations from churches &amp; 501(c)(3)</div>
-                            <div class="mt-4 text-xs uppercase tracking-widest bg-white/20 text-white px-4 py-2 inline-block rounded">Form 31-E • Lucas County</div>
+                            <div class="hero-subtitle text-white text-xl md:text-2xl mt-1">Toledo City Council</div>
+                            <div class="hero-tagline mt-6 text-white/95 text-base md:text-lg font-medium">Prohibited donations from churches &amp; 501(c)(3)</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right side -->
-                <div class="p-6 md:p-8 flex flex-col justify-center">
-                    <h1 class="text-4xl md:text-5xl font-semibold leading-none tracking-tighter text-slate-900">
+                <div class="hero-content p-6 md:p-8 flex flex-col justify-center">
+                    <h1 class="heading-font text-4xl md:text-5xl font-semibold leading-none tracking-tighter text-slate-900">
                         PROHIBITED DONATIONS
                     </h1>
                     <p class="mt-6 text-lg md:text-xl text-slate-700">
-                        Public records show direct contributions from churches and a 501(c)(3) nonprofit — banned under Ohio law and the federal Johnson Amendment.
+                        Public records show direct contributions from churches and a 501(c)(3) nonprofit, banned under Ohio law and the federal Johnson Amendment.
                     </p>
-                    <div class="mt-auto pt-8">
-                        <div class="flex items-center text-red-600 font-semibold text-5xl md:text-6xl font-mono">$1,750</div>
-                        <div class="text-red-600 text-lg md:text-xl">in documented prohibited contributions • November 2025</div>
+                    <div class="total-block mt-auto pt-8">
+                        <div class="total-number flex items-center text-red-600 font-semibold text-5xl md:text-6xl font-mono">$1,750</div>
+                        <div class="total-caption text-red-600 text-lg md:text-xl">in documented prohibited contributions • November 2025</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Rest of the site (Why Illegal, Why Unfair, Violations, etc.) -->
-    <div class="max-w-screen-xl mx-auto px-6 pb-12">
-        <div class="bg-white rounded-3xl shadow border border-red-100 p-8">
-            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-x-3 text-red-700"><span>⚖️</span> Why These Donations Are Illegal</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-slate-700">
-                <div><strong>Federal Law (Johnson Amendment)</strong><br>501(c)(3) organizations (churches &amp; nonprofits like IMA of Toledo) are prohibited from making direct contributions to political campaigns.</div>
-                <div><strong>Ohio Law</strong><br>Campaigns cannot accept money from churches or nonprofits. These rules prevent tax-subsidized groups from funding candidates.</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="max-w-screen-xl mx-auto px-6 pb-16">
-        <div class="bg-amber-50 border border-amber-200 rounded-3xl p-8">
-            <h2 class="text-2xl font-semibold mb-4 flex items-center gap-x-3 text-amber-800"><span>⚖️</span> Why This Is Unfair</h2>
-            <p class="text-slate-700 leading-relaxed">
-                Democrats often demand that churches “stay out of politics” — especially conservative ones. Yet when leftist churches and 501(c)(3) nonprofits quietly fund Democratic candidates like McPherson, the same critics say nothing. 
-                This double standard undermines the very rules meant to keep tax-exempt groups out of elections.
-            </p>
-        </div>
-    </div>
-
-    <div id="violations" class="max-w-screen-xl mx-auto px-6 pb-16">
-        <div class="bg-white rounded-3xl shadow border border-red-100 p-8">
-            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-x-3"><span class="text-red-600">🚨</span> Documented Prohibited Contributions</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
-                    <div class="flex justify-between"><div><div class="font-semibold text-lg">River of Life Church</div><div class="text-sm text-slate-600">3611 Upton Ave, Toledo</div></div><div class="text-right"><div class="text-3xl font-semibold text-red-600">$300</div><div class="text-xs uppercase text-red-500">CASH</div></div></div>
-                </div>
-                <div class="bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
-                    <div class="flex justify-between"><div><div class="font-semibold text-lg">Second Baptist Church</div><div class="text-sm text-slate-600">936 Maumee Western Rd</div></div><div class="text-right"><div class="text-3xl font-semibold text-red-600">$600</div><div class="text-xs uppercase text-red-500">CASH</div></div></div>
-                </div>
-                <div class="bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
-                    <div class="flex justify-between"><div><div class="font-semibold text-lg">Grace Point Baptist Church</div><div class="text-sm text-slate-600">670 Phillips Ave, Toledo</div></div><div class="text-right"><div class="text-3xl font-semibold text-red-600">$400</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
-                </div>
-                <div class="bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
-                    <div class="flex justify-between"><div><div class="font-semibold text-lg">IMA of Toledo</div><div class="text-sm text-slate-600">501(c)(3) Nonprofit</div></div><div class="text-right"><div class="text-3xl font-semibold text-red-600">$50</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
-                </div>
-                <div class="bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
-                    <div class="flex justify-between"><div><div class="font-semibold text-lg">Indiana MBC (Indiana Ave M.B.C.)</div><div class="text-sm text-slate-600">Church</div></div><div class="text-right"><div class="text-3xl font-semibold text-red-600">$400</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
+    <!-- Rest of the site -->
+    <main>
+        <section class="content-stack page-shell pb-12">
+            <div class="content-card bg-white rounded-3xl shadow border border-red-100 p-8">
+                <h2 class="text-2xl font-semibold mb-6 flex items-center gap-x-3 text-red-700"><span>⚖️</span> Why These Donations Are Illegal</h2>
+                <div class="legal-grid grid md:grid-cols-2 gap-8 text-slate-700">
+                    <div><strong>Federal Law (Johnson Amendment)</strong><br>501(c)(3) organizations, churches and nonprofits like IMA of Toledo, are prohibited from making direct contributions to political campaigns.</div>
+                    <div><strong>Ohio Law</strong><br>Campaigns cannot accept money from churches or nonprofits. These rules prevent tax-subsidized groups from funding candidates.</div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="max-w-screen-xl mx-auto px-6 pb-20">
-        <div class="bg-slate-900 text-white rounded-3xl p-10">
-            <h2 class="text-3xl font-semibold mb-4">What You Can Do</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <a href="https://elc.ohio.gov/file-complaint" target="_blank" class="block bg-white text-slate-900 rounded-2xl p-6 hover:shadow-xl transition-all">File a Complaint with the Ohio Elections Commission</a>
-                <a href="https://sosforms.ohiosos.gov/forms/elections/report-campaign-finance-violation" target="_blank" class="block bg-white text-slate-900 rounded-2xl p-6 hover:shadow-xl transition-all">Report to Ohio Secretary of State</a>
+        <section class="content-stack page-shell pb-16">
+            <div class="content-card bg-amber-50 border border-amber-200 rounded-3xl p-8">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center gap-x-3 text-amber-800"><span>⚖️</span> Why This Is Unfair</h2>
+                <p class="text-slate-700 leading-relaxed">
+                    Democrats often demand that churches “stay out of politics,” especially conservative ones. Yet when leftist churches and 501(c)(3) nonprofits quietly fund Democratic candidates like McPherson, the same critics say nothing.
+                    This double standard undermines the very rules meant to keep tax-exempt groups out of elections.
+                </p>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <footer class="text-center text-xs text-slate-400 pb-10">
+        <section id="violations" class="content-stack page-shell pb-16">
+            <div class="content-card bg-white rounded-3xl shadow border border-red-100 p-8">
+                <h2 class="text-2xl font-semibold mb-6 flex items-center gap-x-3"><span class="text-red-600">🚨</span> Documented Prohibited Contributions</h2>
+                <div class="violations-grid grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="violation-card bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
+                        <div class="violation-row flex justify-between"><div><div class="violation-name font-semibold text-lg">River of Life Church</div><div class="violation-address text-sm text-slate-600">3611 Upton Ave, Toledo</div></div><div class="text-right"><div class="violation-amount text-3xl font-semibold text-red-600">$300</div><div class="text-xs uppercase text-red-500">CASH</div></div></div>
+                    </div>
+                    <div class="violation-card bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
+                        <div class="violation-row flex justify-between"><div><div class="violation-name font-semibold text-lg">Second Baptist Church</div><div class="violation-address text-sm text-slate-600">936 Maumee Western Rd</div></div><div class="text-right"><div class="violation-amount text-3xl font-semibold text-red-600">$600</div><div class="text-xs uppercase text-red-500">CASH</div></div></div>
+                    </div>
+                    <div class="violation-card bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
+                        <div class="violation-row flex justify-between"><div><div class="violation-name font-semibold text-lg">Grace Point Baptist Church</div><div class="violation-address text-sm text-slate-600">670 Phillips Ave, Toledo</div></div><div class="text-right"><div class="violation-amount text-3xl font-semibold text-red-600">$400</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
+                    </div>
+                    <div class="violation-card bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
+                        <div class="violation-row flex justify-between"><div><div class="violation-name font-semibold text-lg">IMA of Toledo</div><div class="violation-address text-sm text-slate-600">501(c)(3) Nonprofit</div></div><div class="text-right"><div class="violation-amount text-3xl font-semibold text-red-600">$50</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
+                    </div>
+                    <div class="violation-card bg-white border border-red-200 rounded-2xl p-6" style="border-left:6px solid #dc2626;">
+                        <div class="violation-row flex justify-between"><div><div class="violation-name font-semibold text-lg">Indiana MBC</div><div class="violation-address text-sm text-slate-600">Indiana Ave M.B.C. • Church</div></div><div class="text-right"><div class="violation-amount text-3xl font-semibold text-red-600">$400</div><div class="text-xs uppercase text-red-500">CHECK</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-stack page-shell pb-20">
+            <div class="cta-card bg-slate-900 text-white rounded-3xl p-10">
+                <h2 class="text-3xl font-semibold mb-4">What You Can Do</h2>
+                <div class="cta-links grid md:grid-cols-2 gap-8">
+                    <a href="https://elc.ohio.gov/file-complaint" target="_blank" class="block bg-white text-slate-900 rounded-2xl p-6 hover:shadow-xl transition-all">File a Complaint with the Ohio Elections Commission</a>
+                    <a href="https://sosforms.ohiosos.gov/forms/elections/report-campaign-finance-violation" target="_blank" class="block bg-white text-slate-900 rounded-2xl p-6 hover:shadow-xl transition-all">Report to Ohio Secretary of State</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 pb-10 px-4">
         Based on official Lucas County Board of Elections records • November 2025
     </footer>
 
