@@ -303,6 +303,36 @@
                 max-width: 21rem;
             }
         }
+
+
+        /* Hard mobile overrides */
+        @media (max-width: 899px) {
+            .desktop-nav-actions {
+                display: none !important;
+                visibility: hidden !important;
+                width: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+                pointer-events: none !important;
+            }
+
+            .nav-inner {
+                justify-content: flex-start !important;
+            }
+
+            .mobile-action-bar {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .status-pill {
+                font-size: 1.08rem !important;
+                padding: .62rem 1.2rem !important;
+                border-radius: 999px !important;
+                letter-spacing: .04em !important;
+                font-weight: 800 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
